@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>css原理</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<style>
+  .fade-enter{
+    opacity: 0;
+  }
+  .fade-enter-active{
+    transition: opacity 3s;
+  }
+  .fade-leave-to{
+    opacity: 0;
+  }
+  .fade-leave-active{
+    transition: opacity 3s;
+  }
+</style>
+<body>
+  <div id="app">
+    <transition name="fade">
+      <div v-if="show">hello world</div>
+    </transition>
+    <button @click="handle">切换</button>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        show : true
+      },
+      methods: {
+        handle: function(){
+          this.show = !this.show
+        }
+      }
+    })
+  </script>
+</body>
+</html>

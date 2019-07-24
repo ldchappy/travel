@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>计算属性</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  {{fullname}}
+</div>
+
+<script>
+// 生命周期函数就是vue实例在某一个时间点会自动执行的函数
+   var vm = new Vue({
+    el: '#app',
+    data:{
+      fname: 'LI',
+      lname: 'wo'
+    },
+    // computed: {  // 这是正常的写法
+    //   fullname : function(){
+    //     return this.fname + ' ' + this.lname
+    //   }
+    // }
+    // 下面是使用get、set方法来完成computed
+    computed: {  // 这里的get方法 对应了上面的正常的写法
+      fullname: {
+        get : function(){
+          return this.fname + ' ' + this.lname
+        },
+        set : function(value){ // 这里的value是fullname变化之后的值
+          console.log(value)
+          var arr = value.split(' ')
+          this.fname = arr[0]
+          this.lname = arr[1]
+        }
+      }
+    }
+   })
+</script>
+</body>
+</html>
